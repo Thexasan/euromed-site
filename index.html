@@ -25,8 +25,33 @@
         .header-phone a { font-size: 1.15rem; font-weight: 700; color: #0d6eaa; text-decoration: none; }
         .header-phone small { display: block; font-size: 0.8rem; color: #888; }
         .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
-        .menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001; position: relative; }
         .menu-toggle span { display: block; width: 24px; height: 2px; background: #333; margin: 5px 0; transition: 0.3s; }
+        .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); background: #fff; }
+        .menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); background: #fff; }
+
+        /* MOBILE DRAWER */
+        .mobile-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999; opacity: 0; transition: opacity 0.3s ease; backdrop-filter: blur(4px); }
+        .mobile-overlay.active { display: block; opacity: 1; }
+        .mobile-drawer { position: fixed; top: 0; right: -320px; width: 300px; max-width: 85vw; height: 100%; background: linear-gradient(180deg, #0a4f7a 0%, #0d6eaa 40%, #1a8fd4 100%); z-index: 1000; transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); overflow-y: auto; box-shadow: -8px 0 30px rgba(0,0,0,0.3); }
+        .mobile-drawer.active { right: 0; }
+        .mobile-drawer-header { padding: 28px 24px 20px; border-bottom: 1px solid rgba(255,255,255,0.15); }
+        .mobile-drawer-header img { height: 36px; filter: brightness(0) invert(1); }
+        .mobile-drawer-header p { color: rgba(255,255,255,0.7); font-size: 0.8rem; margin-top: 8px; }
+        .mobile-drawer-nav { padding: 12px 0; }
+        .mobile-drawer-nav a { display: flex; align-items: center; gap: 14px; padding: 16px 24px; color: #fff; text-decoration: none; font-size: 1.05rem; font-weight: 500; transition: all 0.2s; border-left: 3px solid transparent; }
+        .mobile-drawer-nav a:hover, .mobile-drawer-nav a:active { background: rgba(255,255,255,0.1); border-left-color: #7dd3fc; }
+        .mobile-drawer-nav a .nav-icon { width: 36px; height: 36px; background: rgba(255,255,255,0.12); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+        .mobile-drawer-cta { padding: 20px 24px; }
+        .mobile-drawer-cta a { display: block; text-align: center; background: #fff; color: #0d6eaa; padding: 14px; border-radius: 10px; font-weight: 700; font-size: 1rem; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .mobile-drawer-cta a:active { transform: scale(0.97); }
+        .mobile-drawer-contacts { padding: 16px 24px 28px; border-top: 1px solid rgba(255,255,255,0.15); margin-top: 8px; }
+        .mobile-drawer-contacts a { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.9rem; padding: 8px 0; }
+        .mobile-drawer-contacts a:hover { color: #fff; }
+        .mobile-drawer-contacts .contact-icon { font-size: 1.1rem; width: 20px; text-align: center; }
+        .mobile-drawer-schedule { color: rgba(255,255,255,0.6); font-size: 0.8rem; margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); }
+        body.drawer-open { overflow: hidden; }
 
         /* HERO */
         .hero { background: linear-gradient(135deg, rgba(10,79,122,0.85), rgba(13,110,170,0.8)), url('https://euromed-liard.vercel.app/images/doctor-azizov.jpg') center/cover; color: #fff; padding: 80px 0; position: relative; }
@@ -147,8 +172,9 @@
         .footer-legal-inner strong { color: #aaa; }
         .map-link { display: inline-flex; align-items: center; gap: 6px; color: #7eb8f7; text-decoration: none; font-size: 0.85rem; margin-top: 8px; }
         .map-link:hover { text-decoration: underline; }
+
         /* RESPONSIVE */
-        @media (max-width: 992px) { nav { display: none; } .menu-toggle { display: block; } .hero h1 { font-size: 2rem; } .stats-grid { grid-template-columns: repeat(2, 1fr); } .services-grid { grid-template-columns: repeat(2, 1fr); } .specialists-grid { grid-template-columns: repeat(2, 1fr); } .news-grid { grid-template-columns: repeat(2, 1fr); } .footer-grid { grid-template-columns: repeat(2, 1fr); } .booking-steps { flex-wrap: wrap; gap: 16px; } }
+        @media (max-width: 992px) { nav { display: none !important; } .menu-toggle { display: block; } .hero h1 { font-size: 2rem; } .stats-grid { grid-template-columns: repeat(2, 1fr); } .services-grid { grid-template-columns: repeat(2, 1fr); } .specialists-grid { grid-template-columns: repeat(2, 1fr); } .news-grid { grid-template-columns: repeat(2, 1fr); } .footer-grid { grid-template-columns: repeat(2, 1fr); } .booking-steps { flex-wrap: wrap; gap: 16px; } }
         @media (max-width: 600px) { .header-top .container { flex-direction: column; gap: 4px; text-align: center; } .header-main .container { flex-wrap: wrap; } .header-phone { display: none; } .hero { padding: 50px 0; } .hero h1 { font-size: 1.6rem; } .hero p { font-size: 1rem; } .hero-tags { flex-direction: column; } .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } .stat-number { font-size: 2rem; } .services-grid { grid-template-columns: 1fr; } .specialists-grid { grid-template-columns: 1fr; } .news-grid { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; text-align: center; } .section-title h2 { font-size: 1.5rem; } .booking-steps { flex-direction: column; align-items: center; } }
     </style>
 </head>
@@ -162,10 +188,44 @@
             <img src="https://euromed-liard.vercel.app/images/logo-full.png" alt="EuroMed">
         </a>
         <nav><a href="#services">Услуги</a><a href="#specialists">Специалисты</a><a href="#booking">Запись</a><a href="#news">Новости</a><a href="#contacts">Контакты</a></nav>
-        <button class="menu-toggle" onclick="document.querySelector('nav').style.display=document.querySelector('nav').style.display==='flex'?'none':'flex'"><span></span><span></span><span></span></button>
+        <button class="menu-toggle" onclick="toggleDrawer()"><span></span><span></span><span></span></button>
         <div class="header-phone"><a href="tel:+992984330303">+992 984 33 03 03</a><small>Звоните, мы на связи</small></div>
     </div></div>
 </header>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-overlay" onclick="toggleDrawer()"></div>
+<div class="mobile-drawer">
+    <div class="mobile-drawer-header">
+        <img src="https://euromed-liard.vercel.app/images/logo-full.png" alt="EuroMed">
+        <p>Медицинский центр в Душанбе</p>
+    </div>
+    <div class="mobile-drawer-nav">
+        <a href="#services" onclick="toggleDrawer()"><div class="nav-icon">&#128138;</div> Услуги</a>
+        <a href="#specialists" onclick="toggleDrawer()"><div class="nav-icon">&#129658;</div> Специалисты</a>
+        <a href="#booking" onclick="toggleDrawer()"><div class="nav-icon">&#128197;</div> Запись</a>
+        <a href="#news" onclick="toggleDrawer()"><div class="nav-icon">&#128240;</div> Новости</a>
+        <a href="#contacts" onclick="toggleDrawer()"><div class="nav-icon">&#128205;</div> Контакты</a>
+    </div>
+    <div class="mobile-drawer-cta">
+        <a href="#booking" onclick="toggleDrawer()">&#128222; Записаться на приём</a>
+    </div>
+    <div class="mobile-drawer-contacts">
+        <a href="tel:+992984330303"><span class="contact-icon">&#128222;</span> +992 984 33 03 03</a>
+        <a href="mailto:euromedurology@gmail.com"><span class="contact-icon">&#9993;&#65039;</span> euromedurology@gmail.com</a>
+        <a href="https://maps.google.com/?q=Душанбе+Дехи+Боло+180" target="_blank"><span class="contact-icon">&#128204;</span> г. Душанбе, Дехи Боло, 180</a>
+        <div class="mobile-drawer-schedule">&#128336; Пн–Сб: 08:00 – 18:00 | Вс: выходной</div>
+    </div>
+</div>
+
+<script>
+function toggleDrawer() {
+    document.querySelector('.mobile-drawer').classList.toggle('active');
+    document.querySelector('.mobile-overlay').classList.toggle('active');
+    document.querySelector('.menu-toggle').classList.toggle('active');
+    document.body.classList.toggle('drawer-open');
+}
+</script>
 
 <!-- HERO -->
 <section class="hero">
@@ -196,6 +256,7 @@
         </div>
     </div>
 </section>
+
 <!-- SERVICES -->
 <section class="services" id="services">
     <div class="container">
@@ -216,7 +277,6 @@
         </div>
     </div>
 </section>
-
 <!-- SPECIALISTS -->
 <section class="specialists" id="specialists">
     <div class="container">
