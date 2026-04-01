@@ -108,14 +108,14 @@
         .specialist-card.founder { border: 2px solid #0d6eaa; }
         .founder-badge { position: absolute; top: 12px; left: 12px; background: #0d6eaa; color: #fff; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; z-index: 2; }
         .experience-badge { position: absolute; top: 12px; right: 12px; background: rgba(13,110,170,0.1); color: #0d6eaa; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; z-index: 2; }
-        .specialist-avatar { width: 100%; height: 220px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .specialist-avatar { width: 100%; height: 280px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .specialist-avatar.gradient-1 { background: linear-gradient(135deg, #e8f4fb, #d0eaf8); }
         .specialist-avatar.gradient-2 { background: linear-gradient(135deg, #fde8e8, #f8d0d0); }
         .specialist-avatar.gradient-3 { background: linear-gradient(135deg, #e8fbe8, #d0f8d0); }
         .specialist-avatar.gradient-4 { background: linear-gradient(135deg, #fbe8fb, #f8d0f8); }
         .specialist-avatar.gradient-5 { background: linear-gradient(135deg, #fbf4e8, #f8ead0); }
         .specialist-avatar.gradient-6 { background: linear-gradient(135deg, #e8fbf4, #d0f8ea); }
-        .specialist-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .specialist-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
         .specialist-avatar .avatar-placeholder { font-size: 5rem; }
         .specialist-info { padding: 20px 24px; }
         .specialist-info h3 { font-size: 1.1rem; color: #1a1a1a; margin-bottom: 4px; }
@@ -192,22 +192,16 @@
 <header class="header">
     <div class="header-top"><div class="container"><span class="work-hours">Пн–Сб: 08:00 – 18:00 | Вс: выходной</span><a href="mailto:euromedurology@gmail.com">euromedurology@gmail.com</a></div></div>
     <div class="header-main"><div class="container">
-        <a href="index.html" class="logo">
-            <img src="https://euromed-liard.vercel.app/images/logo-full.png" alt="EuroMed">
-        </a>
+        <a href="index.html" class="logo"><img src="https://euromed-liard.vercel.app/images/logo-full.png" alt="EuroMed"></a>
         <nav><a href="#services">Услуги</a><a href="#specialists">Специалисты</a><a href="#booking">Запись</a><a href="#news">Новости</a><a href="#contacts">Контакты</a></nav>
         <button class="menu-toggle" onclick="toggleDrawer()"><span></span><span></span><span></span></button>
         <div class="header-phone"><a href="tel:+992984330303">+992 984 33 03 03</a><small>Звоните, мы на связи</small></div>
     </div></div>
 </header>
 
-<!-- MOBILE DRAWER -->
 <div class="mobile-overlay" onclick="toggleDrawer()"></div>
 <div class="mobile-drawer">
-    <div class="mobile-drawer-header">
-        <img src="https://euromed-liard.vercel.app/images/logo-full.png" alt="EuroMed">
-        <p>Медицинский центр в Душанбе</p>
-    </div>
+    <div class="mobile-drawer-header"><img src="https://euromed-liard.vercel.app/images/logo-full.png" alt="EuroMed"><p>Медицинский центр в Душанбе</p></div>
     <div class="mobile-drawer-nav">
         <a href="#services" onclick="toggleDrawer()"><div class="nav-icon">&#128138;</div> Услуги</a>
         <a href="#specialists" onclick="toggleDrawer()"><div class="nav-icon">&#129658;</div> Специалисты</a>
@@ -215,9 +209,7 @@
         <a href="#news" onclick="toggleDrawer()"><div class="nav-icon">&#128240;</div> Новости</a>
         <a href="#contacts" onclick="toggleDrawer()"><div class="nav-icon">&#128205;</div> Контакты</a>
     </div>
-    <div class="mobile-drawer-cta">
-        <a href="#booking" onclick="toggleDrawer()">&#128222; Записаться на приём</a>
-    </div>
+    <div class="mobile-drawer-cta"><a href="#booking" onclick="toggleDrawer()">&#128222; Записаться на приём</a></div>
     <div class="mobile-drawer-contacts">
         <a href="tel:+992984330303"><span class="contact-icon">&#128222;</span> +992 984 33 03 03</a>
         <a href="mailto:euromedurology@gmail.com"><span class="contact-icon">&#9993;&#65039;</span> euromedurology@gmail.com</a>
@@ -268,11 +260,7 @@ function toggleDrawer() {
 <!-- SERVICES -->
 <section class="services" id="services">
     <div class="container">
-        <div class="section-title">
-            <div class="section-label">Направления</div>
-            <h2>Наши услуги</h2>
-            <p>Широкий спектр медицинских услуг для всей семьи</p>
-        </div>
+        <div class="section-title"><div class="section-label">Направления</div><h2>Наши услуги</h2><p>Широкий спектр медицинских услуг для всей семьи</p></div>
         <div class="services-grid">
             <div class="service-card"><div class="service-icon">&#10084;&#65039;</div><h3>Кардиология</h3><p>Диагностика и лечение сердечно-сосудистых заболеваний</p></div>
             <div class="service-card"><div class="service-icon">&#128118;</div><h3>Педиатрия</h3><p>Комплексная медицинская помощь для детей до 18 лет</p></div>
@@ -289,68 +277,38 @@ function toggleDrawer() {
 <!-- SPECIALISTS -->
 <section class="specialists" id="specialists">
     <div class="container">
-        <div class="section-title">
-            <div class="section-label">Специалисты</div>
-            <h2>Наши врачи</h2>
-            <p>Квалифицированные специалисты с многолетним опытом</p>
-        </div>
+        <div class="section-title"><div class="section-label">Специалисты</div><h2>Наши врачи</h2><p>Квалифицированные специалисты с многолетним опытом</p></div>
         <div class="specialists-grid">
             <div class="specialist-card founder">
                 <div class="founder-badge">Основатель клиники</div>
                 <div class="experience-badge">10 лет опыта</div>
-                <div class="specialist-avatar gradient-1">
-                    <img src="https://euromed-liard.vercel.app/images/doctor-azizov.jpg" alt="Умар Азизов">
-                </div>
-                <div class="specialist-info">
-                    <h3>Умар Азизов</h3>
-                    <div class="specialty">Уролог, андролог, хирург</div>
-                    <a href="#booking" class="btn btn-primary" style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a>
-                </div>
+                <div class="specialist-avatar gradient-1"><img src="https://euromed-liard.vercel.app/images/doctor-azizov.jpg" alt="Умар Азизов"></div>
+                <div class="specialist-info"><h3>Умар Азизов</h3><div class="specialty">Уролог, андролог, хирург</div><a href="#booking" class="btn btn-primary" style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a></div>
             </div>
             <div class="specialist-card">
                 <div class="experience-badge">12 лет опыта</div>
                 <div class="specialist-avatar gradient-2"><div class="avatar-placeholder">&#128105;&#8205;&#9877;&#65039;</div></div>
-                <div class="specialist-info">
-                    <h3>Нилуфар Рашидова</h3>
-                    <div class="specialty">Педиатр</div>
-                    <a href="#booking" class="btn btn-outline" style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a>
-                </div>
+                <div class="specialist-info"><h3>Нилуфар Рашидова</h3><div class="specialty">Педиатр</div><a href="#booking" class="btn btn-outline" style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a></div>
             </div>
             <div class="specialist-card">
                 <div class="experience-badge">15 лет опыта</div>
                 <div class="specialist-avatar gradient-3"><div class="avatar-placeholder">&#128104;&#8205;&#9877;&#65039;</div></div>
-                <div class="specialist-info">
-                    <h3>Бахром Турсунов</h3>
-                    <div class="specialty">Невролог</div>
-                    <a href="#booking" class="btn btn-outline" style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a>
-                </div>
+                <div class="specialist-info"><h3>Бахром Турсунов</h3><div class="specialty">Невролог</div><a href="#booking" class="btn btn-outline" style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a></div>
             </div>
             <div class="specialist-card">
                 <div class="experience-badge">10 лет опыта</div>
                 <div class="specialist-avatar gradient-4"><div class="avatar-placeholder">&#128105;&#8205;&#9877;&#65039;</div></div>
-                <div class="specialist-info">
-                    <h3>Мадина Юсупова</h3>
-                    <div class="specialty">Гинеколог</div>
-                    <a href="#booking" class="btn btn-outline" style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a>
-                </div>
+                <div class="specialist-info"><h3>Мадина Юсупова</h3><div class="specialty">Гинеколог</div><a href="#booking" class="btn btn-outline" style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a></div>
             </div>
             <div class="specialist-card">
                 <div class="experience-badge">20 лет опыта</div>
                 <div class="specialist-avatar gradient-5"><div class="avatar-placeholder">&#128104;&#8205;&#9877;&#65039;</div></div>
-                <div class="specialist-info">
-                    <h3>Сухроб Мирзаев</h3>
-                    <div class="specialty">Хирург</div>
-                    <a href="#booking" class="btn btn-outline" style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a>
-                </div>
+                <div class="specialist-info"><h3>Сухроб Мирзаев</h3><div class="specialty">Хирург</div><a href="#booking" class="btn btn-outline" style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a></div>
             </div>
             <div class="specialist-card">
                 <div class="experience-badge">8 лет опыта</div>
                 <div class="specialist-avatar gradient-6"><div class="avatar-placeholder">&#128105;&#8205;&#9877;&#65039;</div></div>
-                <div class="specialist-info">
-                    <h3>Зарина Холматова</h3>
-                    <div class="specialty">Терапевт</div>
-                    <a href="#booking" class="btn btn-outline" style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a>
-                </div>
+                <div class="specialist-info"><h3>Зарина Холматова</h3><div class="specialty">Терапевт</div><a href="#booking" class="btn btn-outline" style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a></div>
             </div>
         </div>
     </div>
@@ -359,37 +317,18 @@ function toggleDrawer() {
 <!-- BOOKING -->
 <section class="booking" id="booking">
     <div class="container">
-        <div class="section-title center">
-            <div class="section-label">Онлайн-запись</div>
-            <h2>Записаться на приём</h2>
-            <p>Заполните форму и мы свяжемся с вами для подтверждения</p>
-        </div>
+        <div class="section-title center"><div class="section-label">Онлайн-запись</div><h2>Записаться на приём</h2><p>Заполните форму и мы свяжемся с вами для подтверждения</p></div>
         <div class="booking-steps">
             <div class="step"><div class="step-num">01</div><div class="step-text">Заполните форму</div></div>
             <div class="step"><div class="step-num">02</div><div class="step-text">Мы подтвердим запись</div></div>
             <div class="step"><div class="step-num">03</div><div class="step-text">Приходите в назначенное время</div></div>
         </div>
         <form class="booking-form" onsubmit="event.preventDefault();alert('Спасибо! Мы свяжемся с вами в ближайшее время.');">
-            <div class="form-group">
-                <label>Ваше имя</label>
-                <input type="text" placeholder="Введите ваше имя" required>
-            </div>
-            <div class="form-group">
-                <label>Номер телефона</label>
-                <input type="tel" placeholder="+992 ХХХ ХХ ХХ ХХ" required>
-            </div>
-            <div class="form-group">
-                <label>Специалист</label>
-                <select><option value="" disabled selected>Выберите специалиста</option><option>Уролог</option><option>Кардиолог</option><option>Невролог</option><option>Педиатр</option><option>Гинеколог</option><option>Стоматолог</option><option>Терапевт</option><option>УЗИ-диагностика</option><option>Лаборатория</option></select>
-            </div>
-            <div class="form-group">
-                <label>Дата приёма</label>
-                <input type="date">
-            </div>
-            <div class="form-group">
-                <label>Комментарий (необязательно)</label>
-                <textarea placeholder="Опишите причину визита или задайте вопрос"></textarea>
-            </div>
+            <div class="form-group"><label>Ваше имя</label><input type="text" placeholder="Введите ваше имя" required></div>
+            <div class="form-group"><label>Номер телефона</label><input type="tel" placeholder="+992 ХХХ ХХ ХХ ХХ" required></div>
+            <div class="form-group"><label>Специалист</label><select><option value="" disabled selected>Выберите специалиста</option><option>Уролог</option><option>Кардиолог</option><option>Невролог</option><option>Педиатр</option><option>Гинеколог</option><option>Стоматолог</option><option>Терапевт</option><option>УЗИ-диагностика</option><option>Лаборатория</option></select></div>
+            <div class="form-group"><label>Дата приёма</label><input type="date"></div>
+            <div class="form-group"><label>Комментарий (необязательно)</label><textarea placeholder="Опишите причину визита или задайте вопрос"></textarea></div>
             <button type="submit" class="btn">Записаться на приём</button>
         </form>
     </div>
@@ -398,39 +337,11 @@ function toggleDrawer() {
 <!-- NEWS -->
 <section class="news" id="news">
     <div class="container">
-        <div class="section-title">
-            <div class="section-label">Новости</div>
-            <h2>Новости клиники</h2>
-            <p>Последние новости и медицинские рекомендации</p>
-        </div>
+        <div class="section-title"><div class="section-label">Новости</div><h2>Новости клиники</h2><p>Последние новости и медицинские рекомендации</p></div>
         <div class="news-grid">
-            <div class="news-card">
-                <div class="news-img"><img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?w=600&h=400&fit=crop" alt="МРТ оборудование"></div>
-                <div class="news-body">
-                    <div class="news-date">15 марта 2026</div>
-                    <h3>Новое оборудование МРТ в нашей клинике</h3>
-                    <p>Мы установили новейший аппарат МРТ 3 Тесла для точной диагностики заболеваний.</p>
-                    <a href="#" class="news-link">Подробнее &rarr;</a>
-                </div>
-            </div>
-            <div class="news-card">
-                <div class="news-img"><img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&h=400&fit=crop" alt="Лекарства"></div>
-                <div class="news-body">
-                    <div class="news-date">10 марта 2026</div>
-                    <h3>Профилактика аллергии: советы врачей</h3>
-                    <p>Наши специалисты подготовили рекомендации по профилактике сезонной аллергии.</p>
-                    <a href="#" class="news-link">Подробнее &rarr;</a>
-                </div>
-            </div>
-            <div class="news-card">
-                <div class="news-img"><img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop" alt="Консультация"></div>
-                <div class="news-body">
-                    <div class="news-date">1 марта 2026</div>
-                    <h3>День открытых дверей в клинике EuroMed</h3>
-                    <p>Приглашаем всех на бесплатные консультации 20 марта 2026 года.</p>
-                    <a href="#" class="news-link">Подробнее &rarr;</a>
-                </div>
-            </div>
+            <div class="news-card"><div class="news-img"><img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?w=600&h=400&fit=crop" alt="МРТ"></div><div class="news-body"><div class="news-date">15 марта 2026</div><h3>Новое оборудование МРТ в нашей клинике</h3><p>Мы установили новейший аппарат МРТ 3 Тесла для точной диагностики заболеваний.</p><a href="#" class="news-link">Подробнее &rarr;</a></div></div>
+            <div class="news-card"><div class="news-img"><img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&h=400&fit=crop" alt="Лекарства"></div><div class="news-body"><div class="news-date">10 марта 2026</div><h3>Профилактика аллергии: советы врачей</h3><p>Наши специалисты подготовили рекомендации по профилактике сезонной аллергии.</p><a href="#" class="news-link">Подробнее &rarr;</a></div></div>
+            <div class="news-card"><div class="news-img"><img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop" alt="Консультация"></div><div class="news-body"><div class="news-date">1 марта 2026</div><h3>День открытых дверей в клинике EuroMed</h3><p>Приглашаем всех на бесплатные консультации 20 марта 2026 года.</p><a href="#" class="news-link">Подробнее &rarr;</a></div></div>
         </div>
     </div>
 </section>
@@ -440,38 +351,14 @@ function toggleDrawer() {
     <div class="container">
         <div class="footer-grid">
             <div class="footer-col">
-                <div class="footer-brand">
-                    <img src="https://euromed-liard.vercel.app/images/logo-icon-blue.png" alt="EuroMed" style="height:40px; -webkit-filter: brightness(0) invert(1) brightness(0.85); filter: brightness(0) invert(1) brightness(0.85);">
-                </div>
+                <div class="footer-brand"><img src="https://euromed-liard.vercel.app/images/logo-icon-blue.png" alt="EuroMed" style="height:40px; -webkit-filter: brightness(0) invert(1) brightness(0.85); filter: brightness(0) invert(1) brightness(0.85);"></div>
                 <p>Медицинский центр EuroMed — современная клиника в Душанбе с широким спектром медицинских услуг и квалифицированными специалистами.</p>
-                <div class="footer-license">
-                    Лицензия МЗ РТ № 00000<br>
-                    ОГРН 000000000000
-                </div>
+                <div class="footer-license">Лицензия МЗ РТ № 00000<br>ОГРН 000000000000</div>
             </div>
-            <div class="footer-col">
-                <h4>Навигация</h4>
-                <ul><li><a href="#services">Услуги</a></li><li><a href="#specialists">Специалисты</a></li><li><a href="#booking">Запись на приём</a></li><li><a href="#news">Новости</a></li></ul>
-            </div>
-            <div class="footer-col">
-                <h4>Контакты</h4>
-                <ul>
-                    <li>&#128205; г. Душанбе, Дехи Боло, 180</li>
-                    <li>&#128222; <a href="tel:+992984330303">+992 984 33 03 03</a></li>
-                    <li>&#9993;&#65039; <a href="mailto:euromedurology@gmail.com">euromedurology@gmail.com</a></li>
-                </ul>
-                <a href="https://maps.google.com/?q=Душанбе+Дехи+Боло+180" target="_blank" class="map-link">&#128204; Открыть на карте</a>
-            </div>
-            <div class="footer-col">
-                <h4>Режим работы</h4>
-                <ul>
-                    <li>&#128336; Пн–Пт: 08:00 – 20:00</li>
-                    <li>&#128336; Сб: 09:00 – 18:00</li>
-                    <li>&#128336; Вс: выходной</li>
-                </ul>
-            </div>
+            <div class="footer-col"><h4>Навигация</h4><ul><li><a href="#services">Услуги</a></li><li><a href="#specialists">Специалисты</a></li><li><a href="#booking">Запись на приём</a></li><li><a href="#news">Новости</a></li></ul></div>
+            <div class="footer-col"><h4>Контакты</h4><ul><li>&#128205; г. Душанбе, Дехи Боло, 180</li><li>&#128222; <a href="tel:+992984330303">+992 984 33 03 03</a></li><li>&#9993;&#65039; <a href="mailto:euromedurology@gmail.com">euromedurology@gmail.com</a></li></ul><a href="https://maps.google.com/?q=Душанбе+Дехи+Боло+180" target="_blank" class="map-link">&#128204; Открыть на карте</a></div>
+            <div class="footer-col"><h4>Режим работы</h4><ul><li>&#128336; Пн–Пт: 08:00 – 20:00</li><li>&#128336; Сб: 09:00 – 18:00</li><li>&#128336; Вс: выходной</li></ul></div>
         </div>
-
         <div class="footer-legal"><div class="footer-legal-inner"><strong>Юридическое наименование:</strong> ООО «EuroMed» &nbsp;|&nbsp; <strong>Юридический адрес:</strong> г. Душанбе, Дехи Боло, 180 &nbsp;|&nbsp; <strong>Телефон:</strong> <a href="tel:+992984330303" style="color:#7eb8f7">+992 984 33 03 03</a></div></div>
         <div class="footer-bottom"><p>&copy; 2026 ООО «EuroMed». Все права защищены.</p><p><a href="privacy.html">Политика конфиденциальности</a></p></div>
     </div>
