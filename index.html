@@ -1119,6 +1119,45 @@
                 align-items: center;
             }
         }
+
+        /* GALLERY */
+        .gallery {
+            padding: 80px 0;
+            background: #f8fafb;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            aspect-ratio: 16 / 9;
+            background: #eee;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -1147,12 +1186,15 @@
                             fill="#1e82c8">EuroMed</text><text x="102" y="64" font-family="'Segoe UI',Arial,sans-serif"
                             font-size="14" fill="#444">медицинский центр</text>
                     </svg></a>
-                <nav><a href="#services">Услуги</a><a href="#specialists">Специалисты</a><a href="#booking">Запись</a><a
-                        href="#news">Новости</a><a href="#contacts">Контакты</a></nav>
+                <nav><a href="#services">Услуги</a><a href="#specialists">Специалисты</a><a
+                        href="#gallery">Галерея</a><a href="#booking">Запись</a><a href="#news">Новости</a><a
+                        href="#contacts">Контакты</a></nav>
                 <button class="menu-toggle" onclick="toggleDrawer()"><span></span><span></span><span></span></button>
                 <div class="header-phone"><a href="tel:+992446600003">+992 44 660 00 03</a><small>Экстренные: <a
                             href="tel:+9922330303"
                             style="color:#e53935;font-size:0.85rem;font-weight:600;text-decoration:none;">+992 233 03
+                            03</a></small><br><small>WhatsApp: <a href="https://wa.me/992984330303"
+                            style="color:#25D366;font-size:0.85rem;font-weight:600;text-decoration:none;">+992 984 33 03
                             03</a></small></div>
             </div>
         </div>
@@ -1181,6 +1223,9 @@
             <a href="#specialists" onclick="toggleDrawer()">
                 <div class="nav-icon">&#129658;</div> Специалисты
             </a>
+            <a href="#gallery" onclick="toggleDrawer()">
+                <div class="nav-icon">&#128106;</div> Команда
+            </a>
             <a href="#booking" onclick="toggleDrawer()">
                 <div class="nav-icon">&#128197;</div> Запись
             </a>
@@ -1196,6 +1241,8 @@
         <div class="mobile-drawer-contacts">
             <a href="tel:+992446600003"><span class="contact-icon">&#128222;</span> +992 44 660 00 03</a>
             <a href="tel:+9922330303"><span class="contact-icon">&#128680;</span> Экстренные: +992 233 03 03</a>
+            <a href="https://wa.me/992984330303" target="_blank"><span class="contact-icon">&#128242;</span> WhatsApp:
+                +992 984 33 03 03</a>
             <a href="mailto:euromedurology@gmail.com"><span class="contact-icon">&#9993;&#65039;</span>
                 euromedurology@gmail.com</a>
             <a href="https://maps.google.com/?q=Душанбе+Дехи+Боло+180" target="_blank"><span
@@ -1403,6 +1450,48 @@
                             style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a>
                     </div>
                 </div>
+
+                <div class="specialist-card">
+                    <div class="specialist-avatar gradient-2"><img src="doctors/image%20copy%204.png"
+                            alt="Мавлонова Мадина Нуралиевна"></div>
+                    <div class="specialist-info">
+                        <h3 style="font-size: 1.05rem;">Мавлонова Мадина Н.</h3>
+                        <div class="specialty" style="font-size: 0.85rem; height: 35px;">Гинеколог, врач функциональной
+                            диагностики</div>
+                        <a href="#booking" class="btn btn-outline"
+                            style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a>
+                    </div>
+                </div>
+
+                <div class="specialist-card">
+                    <div class="specialist-avatar gradient-3"><img src="doctors/image%20copy%206.png"
+                            alt="Шохзода Шодруз"></div>
+                    <div class="specialist-info">
+                        <h3 style="font-size: 1.05rem;">Шохзода Шодруз</h3>
+                        <div class="specialty" style="font-size: 0.85rem; height: 35px;">Врач-анестезиолог</div>
+                        <a href="#booking" class="btn btn-outline"
+                            style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-title center">
+                <div class="section-label">Наша команда</div>
+                <h2>Жизнь клиники</h2>
+                <p>Мы — единая команда профессионалов, стремящихся обеспечить лучший уход для наших пациентов</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="doctors/image%20copy%207.png" alt="Коллектив Euromed 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="doctors/image%20copy%208.png" alt="Коллектив Euromed 2">
+                </div>
             </div>
         </div>
     </section>
@@ -1541,6 +1630,7 @@
                         <li>&#128205; г. Душанбе, Дехи Боло, 180</li>
                         <li>&#128222; <a href="tel:+992446600003">+992 44 660 00 03</a></li>
                         <li>&#128680; <a href="tel:+9922330303">Экстренные: +992 233 03 03</a></li>
+                        <li>&#128242; <a href="https://wa.me/992984330303">WhatsApp: +992 984 33 03 03</a></li>
                         <li>&#9993;&#65039; <a href="mailto:euromedurology@gmail.com">euromedurology@gmail.com</a></li>
                     </ul><a href="https://maps.google.com/?q=Душанбе+Дехи+Боло+180" target="_blank"
                         class="map-link">&#128204; Открыть на карте</a>
@@ -1558,7 +1648,9 @@
                 <div class="footer-legal-inner">
                     <strong>Юридическое наименование:</strong> ООО «Даво Сифат» | <strong>Юридический адрес:</strong> г.
                     Душанбе, Дехи Боло, 180 | <strong>Телефон:</strong> <a href="tel:+992446600003"
-                        style="color:#7eb8f7;text-decoration:none;">+992 44 660 00 03</a>
+                        style="color:#7eb8f7;text-decoration:none;">+992 44 660 00 03</a> | <strong>WhatsApp:</strong>
+                    <a href="https://wa.me/992984330303" style="color:#7eb8f7;text-decoration:none;">+992 984 33 03
+                        03</a>
                 </div>
             </div>
             <div class="footer-bottom">
