@@ -599,6 +599,28 @@
             transform: translateY(0);
         }
 
+        .specialist-card .details-toggle {
+            display: none;
+            width: 100%;
+            justify-content: center;
+            margin-top: 14px;
+            padding: 12px 14px;
+            border: 1px solid #0d6eaa;
+            background: transparent;
+            color: #0d6eaa;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            position: relative;
+            z-index: 2;
+        }
+
+        .specialist-card .details-toggle:hover {
+            background: rgba(13, 110, 170, 0.08);
+        }
+
         .specialist-overlay p {
             margin: 0;
             font-size: 0.95rem;
@@ -1232,6 +1254,20 @@
         }
 
         @media (max-width: 768px) {
+            .specialist-card:hover .specialist-overlay {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            .specialist-card .details-toggle {
+                display: inline-flex;
+            }
+
+            .specialist-card.active .specialist-overlay {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
             .gallery-grid {
                 grid-template-columns: 1fr;
             }
@@ -1260,9 +1296,14 @@
                             fill="#1e82c8">EuroMed</text><text x="102" y="64" font-family="'Segoe UI',Arial,sans-serif"
                             font-size="14" fill="#444">медицинский центр</text>
                     </svg></a>
-                <nav><a href="#services">Услуги</a><a href="#specialists">Специалисты</a><a
-                        href="#gallery">Галерея</a><a href="#booking">Запись</a><a href="#news">Новости</a><a
-                        href="#contacts">Контакты</a></nav>
+                <nav>
+                    <a href="#services">Услуги</a>
+                    <a href="#specialists">Специалисты</a>
+                    <a href="#booking">Запись</a>
+                    <a href="#gallery">Галерея</a>
+                    <a href="#news">Новости</a>
+                    <a href="#contacts">Контакты</a>
+                </nav>
                 <button class="menu-toggle" onclick="toggleDrawer()"><span></span><span></span><span></span></button>
                 <div class="header-phone">
                     <a href="tel:+992446600003">+992 44 660 00 03</a>
@@ -1304,11 +1345,11 @@
             <a href="#specialists" onclick="toggleDrawer()">
                 <div class="nav-icon">&#129658;</div> Специалисты
             </a>
-            <a href="#gallery" onclick="toggleDrawer()">
-                <div class="nav-icon">&#128106;</div> Команда
-            </a>
             <a href="#booking" onclick="toggleDrawer()">
                 <div class="nav-icon">&#128197;</div> Запись
+            </a>
+            <a href="#gallery" onclick="toggleDrawer()">
+                <div class="nav-icon">&#128106;</div> Команда
             </a>
             <a href="#news" onclick="toggleDrawer()">
                 <div class="nav-icon">&#128240;</div> Новости
@@ -1394,6 +1435,22 @@
                         });
                 });
             }
+
+            document.querySelectorAll('.specialist-card').forEach(function (card) {
+                var info = card.querySelector('.specialist-info');
+                if (!info) return;
+
+                var toggle = document.createElement('button');
+                toggle.type = 'button';
+                toggle.className = 'details-toggle';
+                toggle.textContent = 'Подробнее';
+                info.appendChild(toggle);
+
+                toggle.addEventListener('click', function (event) {
+                    event.stopPropagation();
+                    card.classList.toggle('active');
+                });
+            });
         });
     </script>
 
@@ -1495,8 +1552,8 @@
                     <div class="specialist-info">
                         <h3>Азизов Умар</h3>
                         <div class="specialty">Уролог, андролог, хирург</div>
-                        <a href="#booking" class="btn btn-primary"
-                            style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a>
+                        <!-- <a href="#booking" class="btn btn-primary"
+                            style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a> -->
                     </div>
                 </div>
 
@@ -1508,8 +1565,8 @@
                     <div class="specialist-info">
                         <h3 style="font-size: 1rem;">Маҳмадшоев Ёқубчон А.</h3>
                         <div class="specialty" style="font-size: 0.85rem; height: 35px;">Врач-уролог</div>
-                        <a href="#booking" class="btn btn-primary"
-                            style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a>
+                        <!-- <a href="#booking" class="btn btn-outline"
+                            style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a> -->
                     </div>
                 </div>
 
@@ -1521,8 +1578,8 @@
                     <div class="specialist-info">
                         <h3 style="font-size: 1.05rem;">Избасаров Охунчон З.</h3>
                         <div class="specialty" style="font-size: 0.85rem; height: 35px;">Уролог-андролог</div>
-                        <a href="#booking" class="btn btn-outline"
-                            style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a>
+                        <!-- <a href="#booking" class="btn btn-outline"
+                            style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a> -->
                     </div>
                 </div>
 
@@ -1534,8 +1591,8 @@
                     <div class="specialist-info">
                         <h3 style="font-size: 1.05rem;">Бобочонов Орзубек Ч.</h3>
                         <div class="specialty" style="font-size: 0.85rem; height: 35px;">Уролог-андролог</div>
-                        <a href="#booking" class="btn btn-outline"
-                            style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a>
+                        <!-- <a href="#booking" class="btn btn-outline"
+                            style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a> -->
                     </div>
                 </div>
 
@@ -1547,8 +1604,8 @@
                     <div class="specialist-info">
                         <h3 style="font-size: 1.05rem;">Нурзода Амирбеки Ҷ.</h3>
                         <div class="specialty" style="font-size: 0.85rem; height: 35px;">Уролог-андролог</div>
-                        <a href="#booking" class="btn btn-outline"
-                            style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a>
+                        <!-- <a href="#booking" class="btn btn-outline"
+                            style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a> -->
                     </div>
                 </div>
 
@@ -1560,8 +1617,8 @@
                     <div class="specialist-info">
                         <h3 style="font-size: 1.05rem;">Рачабов Хуршед Ш.</h3>
                         <div class="specialty" style="font-size: 0.85rem; height: 35px;">Уролог-андролог</div>
-                        <a href="#booking" class="btn btn-outline"
-                            style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a>
+                        <!-- <a href="#booking" class="btn btn-outline"
+                            style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a> -->
                     </div>
                 </div>
 
@@ -1573,8 +1630,8 @@
                     <div class="specialist-info">
                         <h3 style="font-size: 1.05rem;">Муминов Бахтиёр Р.</h3>
                         <div class="specialty" style="font-size: 0.85rem; height: 35px;">Уролог-андролог</div>
-                        <a href="#booking" class="btn btn-outline"
-                            style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a>
+                        <!-- <a href="#booking" class="btn btn-outline"
+                            style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a> -->
                     </div>
                 </div>
 
@@ -1587,8 +1644,8 @@
                         <h3 style="font-size: 1.05rem;">Мавлонова Мадина Н.</h3>
                         <div class="specialty" style="font-size: 0.85rem; height: 35px;">Гинеколог, врач функциональной
                             диагностики</div>
-                        <a href="#booking" class="btn btn-outline"
-                            style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a>
+                        <!-- <a href="#booking" class="btn btn-outline"
+                            style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a> -->
                     </div>
                 </div>
 
@@ -1600,8 +1657,8 @@
                     <div class="specialist-info">
                         <h3 style="font-size: 1.05rem;">Шохзода Шодруз</h3>
                         <div class="specialty" style="font-size: 0.85rem; height: 35px;">Врач-анестезиолог</div>
-                        <a href="#booking" class="btn btn-outline"
-                            style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a>
+                        <!-- <a href="#booking" class="btn btn-outline"
+                            style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a> -->
                     </div>
                 </div>
 
@@ -1613,8 +1670,8 @@
                     <div class="specialist-info">
                         <h3 style="font-size: 1.05rem;">Сафаров Зухал</h3>
                         <div class="specialty" style="font-size: 0.85rem; height: 35px;">Хирург, уролог-онколог</div>
-                        <a href="#booking" class="btn btn-outline"
-                            style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a>
+                        <!-- <a href="#booking" class="btn btn-outline"
+                            style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a> -->
                     </div>
                 </div>
 
@@ -1626,28 +1683,9 @@
                     <div class="specialist-info">
                         <h3 style="font-size: 1.05rem;">Кенҷаев Ҷонибек Д.</h3>
                         <div class="specialty" style="font-size: 0.85rem; height: 35px;">Уролог-андролог</div>
-                        <a href="#booking" class="btn btn-outline"
-                            style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a>
+                        <!-- <a href="#booking" class="btn btn-outline"
+                            style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a> -->
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- GALLERY -->
-    <section class="gallery" id="gallery">
-        <div class="container">
-            <div class="section-title center">
-                <div class="section-label">Наша команда</div>
-                <h2>Жизнь клиники</h2>
-                <p>Мы — единая команда профессионалов, стремящихся обеспечить лучший уход для наших пациентов</p>
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="doctors/image%20copy%207.png" alt="Коллектив Euromed 1">
-                </div>
-                <div class="gallery-item">
-                    <img src="doctors/image%20copy%208.png" alt="Коллектив Euromed 2">
                 </div>
             </div>
         </div>
@@ -1705,6 +1743,25 @@
                 <button type="submit" class="btn">Записаться на приём</button>
                 <div id="bookingMessage" style="margin-top:12px;font-weight:600;color:#fff"></div>
             </form>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-title center">
+                <div class="section-label">Наша команда</div>
+                <h2>Жизнь клиники</h2>
+                <p>Мы — единая команда профессионалов, стремящихся обеспечить лучший уход для наших пациентов</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="doctors/image%20copy%207.png" alt="Коллектив Euromed 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="doctors/image%20copy%208.png" alt="Коллектив Euromed 2">
+                </div>
+            </div>
         </div>
     </section>
 
