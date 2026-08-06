@@ -578,6 +578,34 @@
             transform: translateY(-4px);
         }
 
+        .specialist-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 78, 122, 0.92);
+            color: #fff;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .specialist-card:hover .specialist-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .specialist-overlay p {
+            margin: 0;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            max-height: 100%;
+        }
+
         .specialist-card.founder {
             border: 2px solid #0d6eaa;
         }
@@ -673,6 +701,52 @@
             text-align: center;
             padding: 10px;
             font-size: 0.9rem;
+        }
+
+        .specialist-details {
+            margin-top: 16px;
+            padding: 14px 16px;
+            background: #f3f8ff;
+            border-radius: 12px;
+            border: 1px solid #d9e9fb;
+            color: #1a1a1a;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .specialist-details summary {
+            cursor: pointer;
+            list-style: none;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .specialist-details summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .specialist-details summary::after {
+            content: "▼";
+            float: right;
+            font-size: 0.85rem;
+            color: #0d6eaa;
+        }
+
+        .specialist-details[open] summary::after {
+            content: "▲";
+        }
+
+        .specialist-details p {
+            margin-top: 8px;
+            color: #444;
+        }
+
+        .specialist-details {
+            margin-bottom: 12px;
+        }
+
+        .specialist-info .btn {
+            margin-top: 8px;
         }
 
         /* BOOKING */
@@ -1267,6 +1341,60 @@
             document.querySelector('.menu-toggle').classList.toggle('active');
             document.body.classList.toggle('drawer-open');
         }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var dateInput = document.getElementById('appointmentDate');
+            if (dateInput) {
+                var today = new Date();
+                var minYear = today.getFullYear();
+                var minMonth = String(today.getMonth() + 1).padStart(2, '0');
+                var minDay = String(today.getDate()).padStart(2, '0');
+                dateInput.min = minYear + '-' + minMonth + '-' + minDay;
+
+                var maxDate = new Date(today.getTime());
+                maxDate.setMonth(maxDate.getMonth() + 1);
+                if (maxDate.getDate() !== today.getDate()) {
+                    maxDate.setDate(0);
+                }
+                var maxYear = maxDate.getFullYear();
+                var maxMonth = String(maxDate.getMonth() + 1).padStart(2, '0');
+                var maxDay = String(maxDate.getDate()).padStart(2, '0');
+                dateInput.max = maxYear + '-' + maxMonth + '-' + maxDay;
+            }
+
+            var form = document.getElementById('bookingForm');
+            var message = document.getElementById('bookingMessage');
+
+            if (form && message) {
+                form.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    message.style.color = '#fff';
+                    message.textContent = 'Отправка заявки...';
+
+                    var formData = new FormData(form);
+
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        mode: 'cors'
+                    })
+                        .then(function (response) {
+                            if (!response.ok) {
+                                throw new Error('Сервер вернул ошибку');
+                            }
+                            return response.text();
+                        })
+                        .then(function () {
+                            form.reset();
+                            message.textContent = 'Спасибо! Ваша заявка отправлена.';
+                        })
+                        .catch(function () {
+                            message.style.color = '#ffdddd';
+                            message.textContent = 'Ошибка отправки. Попробуйте ещё раз.';
+                        });
+                });
+            }
+        });
     </script>
 
     <!-- HERO -->
@@ -1360,11 +1488,14 @@
             <div class="specialists-grid">
                 <div class="specialist-card founder">
                     <div class="founder-badge">Основатель клиники</div>
-                    <div class="specialist-avatar gradient-1"><img
-                            src="doctors/aziz.jpg" alt="Умар Азизов"></div>
+                    <div class="specialist-avatar gradient-1"><img src="doctors/aziz.jpg" alt="Умар Азизов"></div>
+                    <div class="specialist-overlay"><p>Основатель клиники Euromed, врач с большими практическими навыками.
+                        Ведёт приём по урологии, андрологии и хирургии, применяет современные методы диагностики и
+                        лечения.</p></div>
                     <div class="specialist-info">
                         <h3>Азизов Умар</h3>
-                        <div class="specialty">Уролог, андролог, хирург</div><a href="#booking" class="btn btn-primary"
+                        <div class="specialty">Уролог, андролог, хирург</div>
+                        <a href="#booking" class="btn btn-primary"
                             style="width:100%;text-align:center;padding:10px;font-size:0.9rem;">&#128222; Записаться</a>
                     </div>
                 </div>
@@ -1372,6 +1503,8 @@
                 <div class="specialist-card">
                     <div class="specialist-avatar gradient-2"><img src="doctors/image.png"
                             alt="Маҳмадшоев Ёқубчон Аҳлиддинович"></div>
+                    <div class="specialist-overlay"><p>Специалист по диагностике и лечению заболеваний мочеполовой системы.
+                        Консультирует пациентов всех возрастов, уделяет внимание профилактике.</p></div>
                     <div class="specialist-info">
                         <h3 style="font-size: 1rem;">Маҳмадшоев Ёқубчон А.</h3>
                         <div class="specialty" style="font-size: 0.85rem; height: 35px;">Врач-уролог</div>
@@ -1383,6 +1516,8 @@
                 <div class="specialist-card">
                     <div class="specialist-avatar gradient-3"><img src="doctors/image%20copy.png"
                             alt="Избасаров Охунчон Зокирчонович"></div>
+                    <div class="specialist-overlay"><p>Работает с мужским репродуктивным здоровьем, лечит заболевания
+                        предстательной железы и способствует восстановлению общего самочувствия.</p></div>
                     <div class="specialist-info">
                         <h3 style="font-size: 1.05rem;">Избасаров Охунчон З.</h3>
                         <div class="specialty" style="font-size: 0.85rem; height: 35px;">Уролог-андролог</div>
@@ -1394,6 +1529,8 @@
                 <div class="specialist-card">
                     <div class="specialist-avatar gradient-4"><img src="doctors/image%20copy%202.png"
                             alt="Бобочонов Орзубек Чуманазарович"></div>
+                    <div class="specialist-overlay"><p>Специализируется на комплексной помощи при урологических заболеваниях.
+                        Консультирует и назначает индивидуальное лечение.</p></div>
                     <div class="specialist-info">
                         <h3 style="font-size: 1.05rem;">Бобочонов Орзубек Ч.</h3>
                         <div class="specialty" style="font-size: 0.85rem; height: 35px;">Уролог-андролог</div>
@@ -1405,6 +1542,8 @@
                 <div class="specialist-card">
                     <div class="specialist-avatar gradient-5"><img src="doctors/image%20copy%203.png"
                             alt="Нурзода Амирбеки Ҷурабек"></div>
+                    <div class="specialist-overlay"><p>Оказывает помощь по вопросам мужского здоровья и репродуктивной
+                        функции. Ведёт прием по современным методикам.</p></div>
                     <div class="specialist-info">
                         <h3 style="font-size: 1.05rem;">Нурзода Амирбеки Ҷ.</h3>
                         <div class="specialty" style="font-size: 0.85rem; height: 35px;">Уролог-андролог</div>
@@ -1416,6 +1555,8 @@
                 <div class="specialist-card">
                     <div class="specialist-avatar gradient-6"><img src="doctors/IMG_6564.PNG"
                             alt="Рачабов Хуршед Шарафджонович"></div>
+                    <div class="specialist-overlay"><p>Предоставляет квалифицированную помощь при урологических заболеваниях,
+                        уделяет внимание точной диагностике и комфортному лечению.</p></div>
                     <div class="specialist-info">
                         <h3 style="font-size: 1.05rem;">Рачабов Хуршед Ш.</h3>
                         <div class="specialty" style="font-size: 0.85rem; height: 35px;">Уролог-андролог</div>
@@ -1427,6 +1568,8 @@
                 <div class="specialist-card">
                     <div class="specialist-avatar gradient-1"><img src="doctors/image%20copy%205.png"
                             alt="Муминов Бахтиёр Разокович"></div>
+                    <div class="specialist-overlay"><p>Оказывает консультации и лечение по вопросам мужского здоровья,
+                        работает по индивидуальным протоколам.</p></div>
                     <div class="specialist-info">
                         <h3 style="font-size: 1.05rem;">Муминов Бахтиёр Р.</h3>
                         <div class="specialty" style="font-size: 0.85rem; height: 35px;">Уролог-андролог</div>
@@ -1438,6 +1581,8 @@
                 <div class="specialist-card">
                     <div class="specialist-avatar gradient-2"><img src="doctors/image%20copy%204.png"
                             alt="Мавлонова Мадина Нуралиевна"></div>
+                    <div class="specialist-overlay"><p>Проводит комплексные гинекологические обследования и
+                        функциональную диагностику. Помогает пациенткам сохранить здоровье на всех этапах жизни.</p></div>
                     <div class="specialist-info">
                         <h3 style="font-size: 1.05rem;">Мавлонова Мадина Н.</h3>
                         <div class="specialty" style="font-size: 0.85rem; height: 35px;">Гинеколог, врач функциональной
@@ -1450,6 +1595,8 @@
                 <div class="specialist-card">
                     <div class="specialist-avatar gradient-3"><img src="doctors/image%20copy%206.png"
                             alt="Шохзода Шодруз"></div>
+                    <div class="specialist-overlay"><p>Обеспечивает безопасное и комфортное обезболивание при операциях и
+                        сложных процедурах, учитывая индивидуальные особенности пациента.</p></div>
                     <div class="specialist-info">
                         <h3 style="font-size: 1.05rem;">Шохзода Шодруз</h3>
                         <div class="specialty" style="font-size: 0.85rem; height: 35px;">Врач-анестезиолог</div>
@@ -1461,6 +1608,8 @@
                 <div class="specialist-card">
                     <div class="specialist-avatar gradient-4"><img src="doctors/image%20copy%209.png"
                             alt="Сафаров Зухал"></div>
+                    <div class="specialist-overlay"><p>Специализируется на хирургическом лечении онкологических заболеваний
+                        мочевой системы. Применяет современные малоинвазивные методы.</p></div>
                     <div class="specialist-info">
                         <h3 style="font-size: 1.05rem;">Сафаров Зухал</h3>
                         <div class="specialty" style="font-size: 0.85rem; height: 35px;">Хирург, уролог-онколог</div>
@@ -1472,6 +1621,8 @@
                 <div class="specialist-card">
                     <div class="specialist-avatar gradient-5"><img src="doctors/IMG_0779.PNG"
                             alt="Кенҷаев Ҷонибек Дилшодович"></div>
+                    <div class="specialist-overlay"><p>Принимает пациентов с проблемами мочеполовой системы и
+                        репродуктивного здоровья, помогает выстроить план лечения и восстановления.</p></div>
                     <div class="specialist-info">
                         <h3 style="font-size: 1.05rem;">Кенҷаев Ҷонибек Д.</h3>
                         <div class="specialty" style="font-size: 0.85rem; height: 35px;">Уролог-андролог</div>
@@ -1524,22 +1675,35 @@
                     <div class="step-text">Приходите в назначенное время</div>
                 </div>
             </div>
-            <form class="booking-form"
-                onsubmit="event.preventDefault();alert('Спасибо! Мы свяжемся с вами в ближайшее время.');">
-                <div class="form-group"><label>Ваше имя</label><input type="text" placeholder="Введите ваше имя"
-                        required></div>
-                <div class="form-group"><label>Номер телефона</label><input type="tel" placeholder="+992 ХХХ ХХ ХХ ХХ"
-                        required></div>
-                <div class="form-group"><label>Специалист</label><select>
-                        <option value="" disabled selected>Выберите специалиста</option>
-                        <option>Уролог-андролог</option>
-                        <option>Уролог-онколог</option>
-                        <option>Гинеколог (функционалист)</option>
+            <form id="bookingForm" class="booking-form" action="https://formsubmit.co/medpoint.tj@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="Новая заявка с сайта Euromed">
+                <input type="hidden" name="_captcha" value="false">
+                <div class="form-group"><label>Ваше имя</label><input type="text" name="clientName"
+                        placeholder="Введите ваше имя" required pattern="[A-Za-zА-Яа-яЁё\s]+"
+                        title="Только буквы и пробелы"></div>
+                <div class="form-group"><label>Номер телефона</label><input type="tel" name="phone"
+                        placeholder="XXX XX XX XX" inputmode="numeric" required pattern="[0-9\s\+\-]+"
+                        title="Только цифры"></div>
+                <div class="form-group"><label>Специалист</label><select name="specialist" required>
+                        <option value="" disabled selected>Выберите врача</option>
+                        <option value="Азизов Умар — Уролог, андролог, хирург">Азизов Умар — Уролог, андролог, хирург</option>
+                        <option value="Мавлонова Мадина Н. — Гинеколог, врач функциональной диагностики">Мавлонова Мадина Н. — Гинеколог, врач функциональной диагностики</option>
+                        <option value="Маҳмадшоев Ёқубчон А. — Врач-уролог">Маҳмадшоев Ёқубчон А. — Врач-уролог</option>
+                        <option value="Избасаров Охунчон З. — Уролог-андролог">Избасаров Охунчон З. — Уролог-андролог</option>
+                        <option value="Бобочонов Орзубек Ч. — Уролог-андролог">Бобочонов Орзубек Ч. — Уролог-андролог</option>
+                        <option value="Нурзода Амирбеки Ҷ. — Уролог-андролог">Нурзода Амирбеки Ҷ. — Уролог-андролог</option>
+                        <option value="Рачабов Хуршед Ш. — Уролог-андролог">Рачабов Хуршед Ш. — Уролог-андролог</option>
+                        <option value="Муминов Бахтиёр Р. — Уролог-андролог">Муминов Бахтиёр Р. — Уролог-андролог</option>
+                        <option value="Кенҷаев Ҷонибек Д. — Уролог-андролог">Кенҷаев Ҷонибек Д. — Уролог-андролог</option>
+                        <option value="Сафаров Зухал — Хирург, уролог-онколог">Сафаров Зухал — Хирург, уролог-онколог</option>
+                        <option value="Шохзода Шодруз — Врач-анестезиолог">Шохзода Шодруз — Врач-анестезиолог</option>
                     </select></div>
-                <div class="form-group"><label>Дата приёма</label><input type="date"></div>
-                <div class="form-group"><label>Комментарий (необязательно)</label><textarea
+                <div class="form-group"><label>Дата приёма</label><input type="date" id="appointmentDate" name="appointmentDate"
+                        required></div>
+                <div class="form-group"><label>Комментарий (необязательно)</label><textarea name="comment"
                         placeholder="Опишите причину визита или задайте вопрос"></textarea></div>
                 <button type="submit" class="btn">Записаться на приём</button>
+                <div id="bookingMessage" style="margin-top:12px;font-weight:600;color:#fff"></div>
             </form>
         </div>
     </section>
@@ -1555,35 +1719,38 @@
             <div class="news-grid">
                 <div class="news-card">
                     <div class="news-img"><img
-                            src="https://images.unsplash.com/photo-1559757175-5700dde675bc?w=600&h=400&fit=crop"
+                            src="https://6a74e9520e32446493cc57e1.imgix.net/sandbox/e9fe550ba3c0c201d69e3bc0a455b623_xl.jpg"
                             alt="МРТ"></div>
                     <div class="news-body">
-                        <div class="news-date">15 марта 2026</div>
-                        <h3>Новое оборудование МРТ в нашей клинике</h3>
-                        <p>Мы установили новейший аппарат МРТ 3 Тесла для точной диагностики заболеваний.</p><a href="#"
-                            class="news-link">Подробнее &rarr;</a>
+                        <div class="news-date">7 августа 2026</div>
+                        <h3>Камни в почках: профилактика и лечение</h3>
+                        <p>Почки могут долго не болеть, даже если заболевание уже развивается.</p>
+                            <a href="https://www.instagram.com/reel/DaKdIYku7_G/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+                                class="news-link">Подробнее &rarr;</a>
                     </div>
                 </div>
                 <div class="news-card">
                     <div class="news-img"><img
-                            src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&h=400&fit=crop"
+                            src="https://6a74e9520e32446493cc57e1.imgix.net/vo_210407_semernikov_gde-otdohnut.mp4_snapshot_00.08.731.jpg"
                             alt="Лекарства"></div>
                     <div class="news-body">
-                        <div class="news-date">10 марта 2026</div>
-                        <h3>Профилактика аллергии: советы врачей</h3>
-                        <p>Наши специалисты подготовили рекомендации по профилактике сезонной аллергии.</p><a href="#"
-                            class="news-link">Подробнее &rarr;</a>
+                        <div class="news-date">2 июля 2026</div>
+                        <h3>Рубрика вопрос-ответ</h3>
+                        <p>Наши специалисты подготовили ответы на насущные и часто задаваемые вопросы от наших пациентов.</p>
+                            <a href="https://www.instagram.com/reel/DaR3DSYoj8a/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+                                class="news-link">Подробнее &rarr;</a>
                     </div>
                 </div>
                 <div class="news-card">
                     <div class="news-img"><img
-                            src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop"
+                            src="https://6a74e9520e32446493cc57e1.imgix.net/L_height.webp"
                             alt="Консультация"></div>
                     <div class="news-body">
-                        <div class="news-date">1 марта 2026</div>
-                        <h3>День открытых дверей в клинике Euromed</h3>
-                        <p>Приглашаем всех на бесплатные консультации 20 марта 2026 года.</p><a href="#"
-                            class="news-link">Подробнее &rarr;</a>
+                        <div class="news-date">3 июня 2026</div>
+                        <h3>Уже 5 лет мы с вами!</h3>
+                        <p>Клиника Euromed празднует свой 5-летний юбилей и рада своим пациентам!</p>
+                            <a href="https://www.instagram.com/reel/DZHhiFIOFui/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+                                class="news-link">Подробнее &rarr;</a>
                     </div>
                 </div>
             </div>
@@ -1640,7 +1807,7 @@
                     <h4>Режим работы</h4>
                     <ul>
                         <li>&#128336; Пн–Пт: 08:00 – 16:00</li>
-                        <li>&#128336; Сб: 08:00 – 1:00</li>
+                        <li>&#128336; Сб: 08:00 – 13:00</li>
                         <li>&#128336; Вс: выходной</li>
                     </ul>
                 </div>
