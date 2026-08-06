@@ -1501,7 +1501,8 @@
                         if (booking) {
                             booking.scrollIntoView({ behavior: 'smooth' });
                             if (select) {
-                                select.focus();
+                                var isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0) || /Mobi|Android/i.test(navigator.userAgent);
+                                if (!isTouchDevice) select.focus();
                                 select.classList.add('prefill-highlight');
                                 setTimeout(function () { select.classList.remove('prefill-highlight'); }, 1800);
                             }
